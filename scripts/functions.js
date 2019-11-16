@@ -14,41 +14,42 @@ endpoint.testing = function (method, url, params) {
 
 };
 
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+};
+
 
 /////////////////////
 // Public API - Generic Functions
 /////////////////////
 
 endpoint.get = function (url) {
-    var options = checkHttpOptions(url, {});
+    var options = checkHttpOptions(url, {}, false);
     return endpoint._get(options);
 };
 
 endpoint.post = function (url, options, callbackData, callbacks) {
-    options = checkHttpOptions(url, options);
-    return endpoint._post(options, callbackData, callbacks);
-};
-
-endpoint.patch = function (url, options) {
-    options = checkHttpOptions(url, options);
-    return endpoint._patch(options);
-};
-
-endpoint.put = function (url, options) {
-    options = checkHttpOptions(url, options);
-    return endpoint._put(options);
+    options = checkHttpOptions(url, options, true);
+    var res = endpoint._post(options, callbackData, callbacks);
+    res._requestId = options.headers['request-Id'];
+    return res;
 };
 
 endpoint.delete = function (url) {
-    var options = checkHttpOptions(url, {});
-    return endpoint._delete(options);
+    var options = checkHttpOptions(url, {}, true);
+    var res = endpoint._delete(options);
+    res._requestId = options.headers['request-Id'];
+    return res;
 };
 
 /////////////////////////////
 //  Private helpers
 /////////////////////////////
 
-var checkHttpOptions = function (url, options) {
+var checkHttpOptions = function (url, options, setRequestId) {
     options = options || {};
     if (!!url) {
         if (isObject(url)) {
@@ -66,6 +67,19 @@ var checkHttpOptions = function (url, options) {
                 }
             }
         }
+    }
+    if (setRequestId) {
+        var requestId;
+        if (options.body && options.body._requestId) {
+            requestId = options.body._requestId;
+            delete options.body._requestId;
+        } else {
+            requestId = uuidv4();
+        }
+        if (!options.headers) {
+            options.headers = {};
+        }
+        options.headers['request-Id'] = requestId;
     }
     return options;
 };
