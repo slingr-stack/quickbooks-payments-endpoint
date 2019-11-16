@@ -1,0 +1,108 @@
+{
+  "label": "QuickBooks Payments",
+  "name": "quickbooks-payments",
+  "apiVersion": "v1",
+  "internal": false,
+  "configurationType": "GLOBAL",
+  "deployment": {
+    "profiles": [
+      {
+        "name": "default",
+        "label": "Default",
+        "memory": 256,
+        "description": "Default configuration"
+      }
+    ],
+    "allowMultipleInstances": false
+  },
+  "configurationHelpUrl": "/endpoints_quickbooks_payments.html",
+  "status": "ACTIVE",
+  "stores": [
+    {"name": "tokens"}
+  ],
+  "events": [
+    {
+      "label": "Webhook",
+      "name": "webhook",
+      "description": "Notifications from QuickBooks about entities"
+    }
+  ],
+  "functions": [
+    {
+      "label": "GET",
+      "name": "_get"
+    },
+    {
+      "label": "POST",
+      "name": "_post"
+    },
+    {
+      "label": "DELETE",
+      "name": "_delete"
+    },
+    {
+      "label": "Convert date to time",
+      "name": "_convertDateToTimestamp"
+    },
+    {
+      "label": "Format from milliseconds",
+      "name": "_formatFromMillis"
+    }
+  ],
+  "scripts": [
+    "quickbooks-payments-helpers.js",
+    "functions.js"
+  ],
+  "listeners": [],
+  "configuration": [
+    {
+      "name": "clientId",
+      "label": "Client ID",
+      "type": "text",
+      "required": true
+    },{
+      "name": "clientSecret",
+      "label": "Client Secret",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "accessToken",
+      "label": "Access Token",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "refreshToken",
+      "label": "Refresh Token",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "quickBooksEnvironment",
+      "label": "QuickBooks environment",
+      "type": "buttonsGroup",
+      "required": true,
+      "defaultValue": "SANDBOX",
+      "typeOptions": {
+          "allowCustom": true,
+          "possibleValues":[
+              {
+                  "label":"Sandbox",
+                  "name":"SANDBOX"
+              },
+              {
+                  "label":"Production",
+                  "name":"PRODUCTION"
+              }
+          ]
+      }
+    },
+    {
+      "name": "verifierToken",
+      "label": "Webhooks Verifier Token",
+      "type": "text",
+      "required": false
+    }
+  ]
+}

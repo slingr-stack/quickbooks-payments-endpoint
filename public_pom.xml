@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.slingr.endpoints</groupId>
+    <artifactId>quickbookspayments</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>SLINGR - QuickBooks Payments Endpoint</name>
+    <packaging>jar</packaging>
+
+    <properties>
+        <!-- SLINGR versions -->
+        <slingr.slingr-endpoints.version>1.0-SNAPSHOT</slingr.slingr-endpoints.version>
+        <!-- Core libraries properties -->
+        <log4j.version>2.8.2</log4j.version>
+        <logentries.version>1.1.11</logentries.version>
+        <jackson.version>2.8.0</jackson.version>
+        <jersey.version>2.22.1</jersey.version>
+        <jericho-html.version>3.4</jericho-html.version>
+        <httpclient.version>4.5.3</httpclient.version>
+        <commons-io.version>2.5</commons-io.version>
+        <commons-lang.version>2.6</commons-lang.version>
+        <commons-collections.version>3.2.2</commons-collections.version>
+        <commons-lang3.version>3.5</commons-lang3.version>
+        <!-- Tests properties -->
+        <junit.version>4.12</junit.version>
+        <mockito.version>1.10.19</mockito.version>
+        <!-- Build properties -->
+        <jdk.version>1.8</jdk.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.compiler.version>2.5.1</project.build.compiler.version>
+        <project.build.source.version>3.0.1</project.build.source.version>
+        <project.build.javadoc.version>3.0.0</project.build.javadoc.version>
+        <project.build.s3-wagon.version>3.3</project.build.s3-wagon.version>
+        <project.build.shade.version>2.4.1</project.build.shade.version>
+        <!-- Other properties -->
+        <build.main-class>io.slingr.endpoints.quickbookspayments.Runner</build.main-class>
+    </properties>
+
+    <dependencies>
+        <!-- SLINGR Modules -->
+        <dependency>
+            <groupId>io.slingr.endpoints</groupId>
+            <artifactId>slingr-endpoints</artifactId>
+            <version>${slingr.slingr-endpoints.version}</version>
+        </dependency>
+
+        <!-- Testing Modules -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>Central</id>
+            <name>Central</name>
+            <url>http://repo1.maven.org/maven2/</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>slingrRepo.release</id>
+            <url>http://repo.slingrs.io/release</url>
+            <releases>
+                <enabled>true</enabled>
+                <checksumPolicy>fail</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>slingrRepo.snapshot</id>
+            <url>http://repo.slingrs.io/snapshot</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${project.build.compiler.version}</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <!--
+            This plugin is use to generate the JAR with all the dependencies, which is needed
+            when deploying the endpoint in the platform (not development mode).
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${project.build.shade.version}</version>
+                <configuration>
+                    <shadedArtifactAttached>true</shadedArtifactAttached>
+                    <shadedClassifierName>jar-with-dependencies</shadedClassifierName>
+                    <transformers>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <manifestEntries>
+                                <Main-Class>${build.main-class}</Main-Class>
+                                <X-Compile-Source-JDK>${jdk.version}</X-Compile-Source-JDK>
+                                <X-Compile-Target-JDK>${jdk.version}</X-Compile-Target-JDK>
+                            </manifestEntries>
+                        </transformer>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheNoticeResourceTransformer">
+                            <addHeader>false</addHeader>
+                        </transformer>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer"></transformer>
+                    </transformers>
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/services/org/apache/camel/component.properties</exclude>
+                                <exclude>META-INF/services/org/apache/camel/dataformat.properties</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>
