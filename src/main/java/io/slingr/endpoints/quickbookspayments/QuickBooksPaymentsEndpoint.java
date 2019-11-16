@@ -31,14 +31,13 @@ import java.util.concurrent.TimeUnit;
  * <p>
  * <p>Created by dgaviola on 11/16/19.
  */
-@SlingrEndpoint(name = "quickbooks-payments", functionPrefix = "_")
+@SlingrEndpoint(name = "quickbookspayments", functionPrefix = "_")
 public class QuickBooksPaymentsEndpoint extends HttpEndpoint {
     private static final Logger logger = Logger.getLogger(QuickBooksPaymentsEndpoint.class);
 
     private static final String QUICKBOOKS_PAYMENTS_SANDBOX_URL = "https://sandbox.api.intuit.com/quickbooks/v4/";
     private static final String QUICKBOOKS_PAYMENTS_PRODUCTION_URL = "https://api.intuit.com/quickbooks/v4/";
     private static final String INVALID_TOKEN_ERROR = "Bearer realm=\"Intuit\", error=\"invalid_token\"";
-    private static final String INVALID_INVALID_GRANT = "invalid_grant";
     private static final String QUICKBOOKS_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
     private static final String INTUIT_SIGNATURE = "intuit-signature";
     private static final String ALGORITHM = "HmacSHA256";

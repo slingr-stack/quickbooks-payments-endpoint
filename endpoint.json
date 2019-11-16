@@ -1,6 +1,6 @@
 {
   "label": "QuickBooks Payments",
-  "name": "quickbooks-payments",
+  "name": "quickbookspayments",
   "apiVersion": "v1",
   "internal": false,
   "configurationType": "GLOBAL",
