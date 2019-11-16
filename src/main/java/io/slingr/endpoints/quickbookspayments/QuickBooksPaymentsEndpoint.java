@@ -76,10 +76,10 @@ public class QuickBooksPaymentsEndpoint extends HttpEndpoint {
     public String getApiUri() {
         switch (quickBooksEnvironment.toUpperCase()) {
             case "PRODUCTION":
-                return QUICKBOOKS_PAYMENTS_SANDBOX_URL;
+                return QUICKBOOKS_PAYMENTS_PRODUCTION_URL;
             case "SANDBOX":
             default:
-                return QUICKBOOKS_PAYMENTS_PRODUCTION_URL;
+                return QUICKBOOKS_PAYMENTS_SANDBOX_URL;
         }
     }
 
