@@ -87,6 +87,7 @@ public class QuickBooksPaymentsEndpoint extends HttpEndpoint {
     public void endpointStarted() {
         this.tokenManager = new TokenManager(httpService(), tokensDataStore, clientId, clientSecret, accessToken, refreshToken, verifierToken);
         Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(tokenManager::refreshQuickBooksToken, TOKEN_REFRESH_POLLING_TIME, TOKEN_REFRESH_POLLING_TIME, TimeUnit.MILLISECONDS);
+        httpService().setupDefaultHeader("Content-Type", "application/json");
     }
 
     @EndpointWebService
