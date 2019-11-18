@@ -129,6 +129,10 @@ public class QuickBooksPaymentsEndpoint extends HttpEndpoint {
                 //needs to refresh token
                 tokenManager.refreshQuickBooksToken();
                 return defaultPostRequest(request);
+            } else if (restException.getMessage() != null && restException.getMessage().contains("Unable to parse \"Content-Type\"")) {
+                // there is a problem with quickbooks payments api that returns a wrong content type, so we will
+                // just ignore this problem
+                return Json.map();
             }
             throw restException;
         }
