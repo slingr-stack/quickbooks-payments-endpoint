@@ -15,7 +15,7 @@
     ],
     "allowMultipleInstances": false
   },
-  "configurationHelpUrl": "/endpoints_quickbooks_payments.html",
+  "configurationHelpUrl": "/endpoints-quickbooks-payments.html",
   "status": "ACTIVE",
   "stores": [
     {"name": "tokens"}
@@ -39,19 +39,16 @@
     {
       "label": "DELETE",
       "name": "_delete"
-    },
-    {
-      "label": "Convert date to time",
-      "name": "_convertDateToTimestamp"
-    },
-    {
-      "label": "Format from milliseconds",
-      "name": "_formatFromMillis"
     }
   ],
   "scripts": [
-    "quickbooks-payments-helpers.js",
     "functions.js"
+  ],
+  "flowSteps": [
+    "apiCallQuickbookspayments",
+    "createBankAccountQuickbookspayments",
+    "createCardQuickbookspayments",
+    "createTokenQuickbookspayments"
   ],
   "listeners": [],
   "configuration": [
