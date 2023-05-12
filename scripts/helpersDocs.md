@@ -1,42 +1,3 @@
----
-title: QuickBooks Payments endpoint
-keywords: 
-last_updated: May 11, 2023
-tags: []
-summary: "Detailed description of the API of the QuickBooks Payments endpoint."
----
-
-## Overview
-
-The QuickBooks Payments endpoint allows you to interact with the QuickBooks Payments API.
-
-Some futures are:
-
-- Shortcuts for the REST API
-
-In most cases the provided helpers and events are enough, but if you need to
-use the QuickBooks Payments REST API you should go to their documentation for
- [API explorer](https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts).
-
-## Configuration
-
-To obtain the requested fields for configuration you need to log in to your intuit developer account and go to
- [Test connect to app (OAuth)](https://developer.intuit.com/v2/ui#/playground). On this page you need to:
-
- - Complete the form selecting the app you want to configure on the endpoint.
-
- - Once you select the app the Client ID and Client Secret fields are being populated. You can copy this values to the endpoint configuration.
-
- - Select the Scopes (make sure to select `Payments`).
-
- - Click on Get authorization code and authorize the app.
-
- - Then click on Get Tokens button.
-
- - Once you have the Tokens you can start making calls to the API. On this screen you need to access to the step 4 and copy
- the Access Token, the Refresh Token and Minor Version to the endpoint configuration. QuickBooks Online data services support 
- minor versions in order to provide a way for you to access incremental changes without breaking existing apps.
-
 # Javascript API
 
 The Javascript API of the quickbookspayments endpoint has three pieces:
@@ -46,7 +7,7 @@ The Javascript API of the quickbookspayments endpoint has three pieces:
 - **Additional Helpers**: These helpers provide additional features that facilitate or improves the endpoint usage in SLINGR.
 
 ## HTTP requests
-You can make `POST`,`DELETE`,`GET` requests to the [quickbookspayments API](https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts) like this:
+You can make `POST`,`DELETE`,`GET` requests to the [quickbookspayments API](API_URL_HERE) like this:
 ```javascript
 var response = app.endpoints.quickbookspayments.post('/customers/:customerId/cards', body)
 var response = app.endpoints.quickbookspayments.post('/customers/:customerId/cards')
@@ -221,10 +182,10 @@ app.endpoints.quickbookspayments.payments.echecks.get(echeckId)
 ---
 
 </details>
-
+    
 ## Flow Step
 
-As an alternative option to using scripts, you can make use of Flows and Flow Steps specifically created for the endpoint:
+As an alternative option to using scripts, you can make use of Flows and Flow Steps specifically created for the endpoint: 
 <details>
     <summary>Click here to see the Flow Steps</summary>
 
@@ -399,276 +360,14 @@ For more information about how shortcuts or flow steps works, and how they are g
 
 
 
-### Create Bank Account
+### Custom Flow Steps Name
 
-Creates a bank account for a customer in the quickbooks payments system.
+Description of Custom Flow Steps
 
-<h3>Inputs</h3>
+*MANUALLY ADD THE DOCUMENTATION OF THESE FLOW STEPS HERE...*
 
-<table>
-    <thead>
-    <tr>
-        <th>Label</th>
-        <th>Type</th>
-        <th>Required</th>
-        <th>Default</th>
-        <th>Visibility</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Costumer Id</td>
-        <td>text</td>
-        <td>yes</td>
-        <td> - </td>
-        <td>Always</td>
-        <td>
-            Id of the costumer to associate the bank account created.
-        </td>
-    </tr>
-    <tr>
-        <td>Account Type</td>
-        <td>choice</td>
-        <td>yes</td>
-        <td> - </td>
-        <td>Always</td>
-        <td>
-            Possible values are: <br>
-            <i><strong>Personal Checking<br> Personal Savings <br> Business Checking <br> Business Savings</strong></i>
-        </td>
-    </tr>
-    <tr>
-        <td>Name</td>
-        <td>text</td>
-        <td>no</td>
-        <td> - </td>
-        <td>Always</td>
-        <td>
-            Name to identify the bank account.
-        </td>
-    </tr>
-    <tr>
-        <td>Account Number</td>
-        <td>text</td>
-        <td>no</td>
-        <td> - </td>
-        <td>Always</td>
-        <td>
-            The account number for the bank account.
-        </td>
-    </tr>
-    <tr>
-        <td>Routing Number</td>
-        <td>text</td>
-        <td>no</td>
-        <td> - </td>
-        <td>Always</td>
-        <td>
-            The routing number for the bank account.
-        </td>
-    </tr>
-    <tr>
-        <td>Phone</td>
-        <td>text</td>
-        <td>no</td>
-        <td> false </td>
-        <td>Always</td>
-        <td>
-            The phone number to associate to the bank account.
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-<h3>Outputs</h3>
-
-<table>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>response</td>
-        <td>object</td>
-        <td>
-            Object resulting from the response to the endpoint call.
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-
-### Create Card
-
-Creates a card for a customer in the quickbooks payments system.
-
-<h3>Inputs</h3>
-
-<table>
-    <thead>
-    <tr>
-        <th>Label</th>
-        <th>Type</th>
-        <th>Required</th>
-        <th>Default</th>
-        <th>Visibility</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Costumer Id</td>
-        <td>text</td>
-        <td>yes</td>
-        <td> - </td>
-        <td>Always</td>
-        <td>
-            Id of the costumer to associate the bank account created.
-        </td>
-    </tr>
-    <tr>
-        <td>Number of the card</td>
-        <td>text</td>
-        <td>yes</td>
-        <td> - </td>
-        <td>Always</td>
-        <td>
-            Number of the card to create. Without spaces or dashes.
-        </td>
-    </tr>
-    <tr>
-        <td>Expiration Mouth</td>
-        <td>choice</td>
-        <td>no</td>
-        <td> - </td>
-        <td>Always</td>
-        <td>
-            Number of the mouth of the expiration date of the card.
-        </td>
-    </tr>
-    <tr>
-        <td>Expiration Year</td>
-        <td> number </td>
-        <td>no</td>
-        <td> - </td>
-        <td>Always</td>
-        <td>
-            Year of the expiration date of the card. 2 digits.
-        </td>
-    </tr>
-    <tr>
-        <td>CVC</td>
-        <td> number </td>
-        <td>no</td>
-        <td> - </td>
-        <td>Always</td>
-        <td>
-            Number of the CVC of the card.
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-<h3>Outputs</h3>
-
-<table>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>response</td>
-        <td>object</td>
-        <td>
-            Object resulting from the response to the endpoint call.
-        </td>
-    </tr>
-    </tbody>
-</table>
 
 </details>
 
-
-### Create Token for Quickbooks Payments
-
-Creates a token for a card or a bank in the quickbooks payments system.
-
-<h3>Inputs</h3>
-
-<table>
-    <thead>
-    <tr>
-        <th>Label</th>
-        <th>Type</th>
-        <th>Required</th>
-        <th>Default</th>
-        <th>Visibility</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Bank Account</td>
-        <td> number </td>
-        <td>no</td>
-        <td> - </td>
-        <td> if Card is not set. </td>
-        <td>
-              Id of the bank account to create the token.
-        </td>
-    </tr>
-    <tr>
-        <td>Card</td>
-        <td> number </td>
-        <td>no</td>
-        <td> - </td>
-        <td> if Bank Account is not set. </td>
-        <td>
-             Id of the card to create the token.
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-<h3>Outputs</h3>
-
-<table>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>response</td>
-        <td>object</td>
-        <td>
-            Object resulting from the response to the endpoint call.
-        </td>
-    </tr>
-    </tbody>
-</table>
-
 ## Additional Helpers
 *MANUALLY ADD THE DOCUMENTATION OF THESE HELPERS HERE...*
-
-## About SLINGR
-
-SLINGR is a low-code rapid application development platform that accelerates development, with robust architecture for integrations and executing custom workflows and automation.
-
-[More info about SLINGR](https://slingr.io)
-
-## License
-
-This endpoint is licensed under the Apache License 2.0. See the `LICENSE` file for more details.

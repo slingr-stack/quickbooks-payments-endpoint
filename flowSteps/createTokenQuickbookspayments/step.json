@@ -1,0 +1,34 @@
+{
+    "label": "Create a token for quickbookspayments API",
+    "name": "createTokenQuickbookspayments",
+    "category": "integrations",
+    "description": "This flow step will send a request to create a token to use in the quickbooks payments API.",
+    "inputs": [
+        {
+            "label": "Bank Account",
+            "name": "bankAccount",
+            "type": "text",
+            "options": {
+                "allowContextSelector": "true"
+            },
+            "required": "!card"
+        },
+        {
+            "label": "Card",
+            "name": "card",
+            "type": "text",
+            "options": {
+                "allowContextSelector": "true"
+            },
+            "required": "!bankAccount"
+        }
+    ],
+    "outputs": [
+        {
+            "label": "Response",
+            "name": "response",
+            "type": "object",
+            "description": "The response to external URL"
+        }
+    ]
+}

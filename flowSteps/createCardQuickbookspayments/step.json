@@ -1,0 +1,124 @@
+{
+    "label": "Create a card with quickbookspayments endpoint",
+    "name": "createCardQuickbookspayments",
+    "category": "integrations",
+    "description": "This flow step will send a request to create a card to a costumer with the quickbooks payments API.",
+    "inputs": [
+        {
+            "label": "Costumer Id",
+            "name": "costumerId",
+            "type": "text",
+            "options": {
+                "allowContextSelector": "true"
+            },
+            "required": "true"
+        },
+        {
+            "label": "Number of the card",
+            "name": "number",
+            "type": "text",
+            "options": {
+                "allowContextSelector": "true"
+            },
+            "required": "true"
+        },
+        {
+            "label": "Expiration Month",
+            "name": "expMonth",
+            "required": "true",
+            "type": "dropDown",
+            "multiplicity": "one",
+            "options": {
+                "possibleValues": [
+                    {
+                        "label": "January",
+                        "name": "1"
+                    },
+                    {
+                        "label": "February",
+                        "name": "2"
+                    },
+                    {
+                        "label": "March",
+                        "name": "3"
+                    },
+                    {
+                        "label": "April",
+                        "name": "4"
+                    },
+                    {
+                        "label": "May",
+                        "name": "5"
+                    },
+                    {
+                        "label": "June",
+                        "name": "6"
+                    },
+                    {
+                        "label": "July",
+                        "name": "7"
+                    },
+                    {
+                        "label": "August",
+                        "name": "8"
+                    },
+                    {
+                        "label": "September",
+                        "name": "9"
+                    },
+                    {
+                        "label": "October",
+                        "name": "10"
+                    },
+                    {
+                        "label": "November",
+                        "name": "11"
+                    },
+                    {
+                        "label": "December",
+                        "name": "12"
+                    }
+                ],
+                "allowContextSelector": "false"
+            }
+        },
+        {
+            "label": "Expiration Year",
+            "name": "expYear",
+            "type": "text",
+            "options": {
+                "allowContextSelector": "true"
+            },
+            "typeOptions": {
+                "validation": {
+                    "function": "!expYear || utils.isPlaceholder(expYear) || utils.getInteger(expYear) >= 0",
+                    "message": "The time must be a valid placeholder or a positive integer greater than or equal to 0. "
+                }
+            },
+            "required": "true"
+        },
+        {
+            "label": "CVC",
+            "name": "cvc",
+            "type": "text",
+            "options": {
+                "allowContextSelector": "true"
+            },
+            "typeOptions": {
+                "validation": {
+                    "function": "!cvc || utils.isPlaceholder(cvc) || utils.getInteger(cvc) >= 100 || utils.getInteger(cvc) < 1000",
+                    "message": "The time must be a valid placeholder or a positive integer greater than or equal to 0. "
+                }
+            },
+            "required": "true"
+        }
+    ],
+    "outputs": [
+        {
+            "label": "Response",
+            "name": "response",
+            "type": "object",
+            "description": "The response to external URL"
+        }
+    ]
+}

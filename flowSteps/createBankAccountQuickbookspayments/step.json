@@ -1,0 +1,102 @@
+{
+    "label": "Create a bank account with quickbookspayments",
+    "name": "createBankAccountQuickbookspayments",
+    "category": "integrations",
+    "description": "This flow step will send a request to create a bank account with the quickbooks payments API.",
+    "inputs": [
+        {
+            "label": "Costumer Id",
+            "name": "costumerId",
+            "type": "text",
+            "options": {
+                "allowContextSelector": "true"
+            },
+            "required": "true"
+        },
+        {
+            "label": "Name",
+            "name": "name",
+            "description": "The name of the bank account",
+            "type": "text",
+            "options": {
+                "allowContextSelector": "true"
+            },
+            "required": "true"
+        },
+        {
+            "label": "Account Number",
+            "name": "accountNumber",
+            "type": "text",
+            "options": {
+                "allowContextSelector": "true"
+            },
+            "required": "true"
+        },
+        {
+            "label": "Account Type",
+            "name": "accountType",
+            "required": "true",
+            "type": "dropDown",
+            "multiplicity": "one",
+            "options": {
+                "possibleValues": [
+                    {
+                        "label": "Personal Checking",
+                        "name": "PERSONAL_CHECKING"
+                    },
+                    {
+                        "label": "Personal Savings",
+                        "name": "PERSONAL_SAVINGS"
+                    },
+                    {
+                        "label": "Business Checking",
+                        "name": "BUSINESS_CHECKING"
+                    },
+                    {
+                        "label": "Business Savings",
+                        "name": "BUSINESS_SAVINGS"
+                    }
+                ],
+                "allowContextSelector": "false"
+            }
+        },
+        {
+            "label": "Routing Number",
+            "name": "routingNumber",
+            "type": "text",
+            "options": {
+                "allowContextSelector": "true"
+            },
+            "typeOptions": {
+                "validation": {
+                    "function": "!routingNumber || utils.isPlaceholder(routingNumber) || utils.getInteger(routingNumber) >= 0",
+                    "message": "The time must be a valid placeholder or a positive integer greater than or equal to 0. "
+                }
+            },
+            "required": "true"
+        },
+        {
+            "label": "Phone",
+            "name": "phone",
+            "type": "text",
+            "options": {
+                "allowContextSelector": "true"
+            },
+            "typeOptions": {
+                "validation": {
+                    "function": "!phone || utils.isPlaceholder(phone) || utils.getInteger(phone) >= 0",
+                    "message": "The time must be a valid placeholder or a positive integer greater than or equal to 0. "
+                }
+            },
+            "required": "true"
+        }
+    ],
+    "outputs": [
+        {
+            "label": "Response",
+            "name": "response",
+            "type": "object",
+            "description": "The response to external URL"
+        }
+    ]
+}

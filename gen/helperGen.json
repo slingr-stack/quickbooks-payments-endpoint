@@ -1,0 +1,204 @@
+{
+  "fileName": "functions",
+  "endpointName": "quickbookspayments",
+  "apiDescriptors": [
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/customers/:customerId/bank-accounts",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/customers/:customerId/bank-accounts/createFromToken",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "DELETE",
+      "url": "/customers/:customerId/bank-accounts/:accountId",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/customers/:customerId/bank-accounts",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/customers/:customerId/bank-accounts/:accountId",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/customers/:customerId/cards",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/customers/:customerId/cards/createFromToken",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "DELETE",
+      "url": "/customers/:customerId/cards/:cardId",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/customers/:customerId/cards",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/customers/:customerId/cards/:cardId",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/payments/charges",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/payments/charges/:chargeId/refunds/:refundId",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/payments/charges/:chargeId",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/payments/charges/:chargeId/refunds",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/payments/charges/:chargeId/capture",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/payments/txn-requests/:chargeRequestId/void",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/payments/echecks",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/payments/echecks/:echeckId/refunds/:refundId",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/payments/echecks/:echeckId",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/payments/echecks/:echeckId/refunds",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/payments/tokens",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/payments/tokens/ie",
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts"
+      ]
+    }
+  ]
+}

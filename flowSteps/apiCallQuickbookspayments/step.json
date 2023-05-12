@@ -1,0 +1,202 @@
+{
+	"label": "API call to quickbookspayments",
+	"name": "apiCallQuickbookspayments",
+	"category": "integrations",
+	"description": "This flow step will send generic request to quickbookspayments",
+	"inputs": [
+		{
+			"label": "Url",
+			"name": "url",
+			"description": "The method and path to which this endpoint is to send requests in a generic way.",
+			"type": "urlParams",
+			"required": "true",
+			"options": {
+				"type": "dropDown",
+				"possibleValues": [
+					{
+						"label": "POST /customers/{customerId}/bank-accounts"
+					},
+					{
+						"label": "POST /customers/{customerId}/bank-accounts/createFromToken"
+					},
+					{
+						"label": "POST /customers/{customerId}/cards"
+					},
+					{
+						"label": "POST /customers/{customerId}/cards/createFromToken"
+					},
+					{
+						"label": "POST /payments/charges"
+					},
+					{
+						"label": "POST /payments/charges/{chargeId}/refunds"
+					},
+					{
+						"label": "POST /payments/charges/{chargeId}/capture"
+					},
+					{
+						"label": "POST /payments/txn-requests/{chargeRequestId}/void"
+					},
+					{
+						"label": "POST /payments/echecks"
+					},
+					{
+						"label": "POST /payments/echecks/{echeckId}/refunds"
+					},
+					{
+						"label": "POST /payments/tokens"
+					},
+					{
+						"label": "POST /payments/tokens/ie"
+					},
+					{
+						"label": "DELETE /customers/{customerId}/bank-accounts/{accountId}"
+					},
+					{
+						"label": "DELETE /customers/{customerId}/cards/{cardId}"
+					},
+					{
+						"label": "GET /customers/{customerId}/bank-accounts"
+					},
+					{
+						"label": "GET /customers/{customerId}/bank-accounts/{accountId}"
+					},
+					{
+						"label": "GET /customers/{customerId}/cards"
+					},
+					{
+						"label": "GET /customers/{customerId}/cards/{cardId}"
+					},
+					{
+						"label": "GET /payments/charges/{chargeId}/refunds/{refundId}"
+					},
+					{
+						"label": "GET /payments/charges/{chargeId}"
+					},
+					{
+						"label": "GET /payments/echecks/{echeckId}/refunds/{refundId}"
+					},
+					{
+						"label": "GET /payments/echecks/{echeckId}"
+					}
+				]
+			}
+		},
+		{
+			"label": "Headers",
+			"name": "headers",
+			"description": "Let the client and the server pass additional information with the HTTP request in a key value format. (e.g. key=ABC123)",
+			"type": "keyValue"
+		},
+		{
+			"label": "Query Params",
+			"name": "params",
+			"description": "Parameters attached to the end of a url in a key value format. (e.g. key=ABC123)",
+			"type": "keyValue"
+		},
+		{
+			"label": "Body",
+			"name": "body",
+			"type": "json",
+			"description": "Content to be sent to the server.",
+			"options": {
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "Override Settings",
+			"name": "overrideSettings",
+			"type": "boolean",
+			"description": "If true, allows adding configurations",
+			"defaultValue": false,
+			"options": {
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "Follow Redirects",
+			"name": "followRedirects",
+			"type": "boolean",
+			"description": "Follow the redirects when a HTTP request is executed",
+			"visibility": "config.overrideSettings",
+			"defaultValue": false,
+			"options": {
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "Download",
+			"name": "download",
+			"type": "boolean",
+			"description": "Indicates that the resource has to be downloaded into a file instead of returning it in the response.",
+			"visibility": "config.overrideSettings && config.events != \"fileDownloaded\"",
+			"defaultValue": false,
+			"options": {
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "File Name",
+			"name": "fileName",
+			"description": "If provided, the file will be stored with this name. If empty the file name will be calculated from the URL.",
+			"visibility": "(config.overrideSettings && config.download) || config.events === \"fileDownloaded\"",
+			"type": "text",
+			"options": {
+				"allowContextSelector": "true"
+			}
+		},
+		{
+			"label": "Full Response",
+			"name": "fullResponse",
+			"type": "boolean",
+			"description": "Include extended information about response",
+			"visibility": "config.overrideSettings",
+			"defaultValue": false,
+			"options": {
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "Connection timeout",
+			"name": "connectionTimeout",
+			"description": "Connect timeout interval, in milliseconds (0 = infinity). Default value: 5000 ms (5 sec)",
+			"visibility": "config.overrideSettings",
+			"type": "text",
+			"defaultValue": "5000",
+			"typeOptions": {
+				"validation": {
+					"function": "!config.connectionTimeout || utils.isPlaceholder(config.connectionTimeout) || utils.getInteger(config.connectionTimeout) >= 0",
+					"message": "The time must be a valid placeholder or a positive integer greater than or equal to 0. "
+				}
+			},
+			"options": {
+				"allowContextSelector": "false"
+			}
+		},
+		{
+			"label": "Read timeout",
+			"name": "readTimeout",
+			"description": "Read timeout interval, in milliseconds (0 = infinity). Default value: 60000 ms (60 sec)",
+			"visibility": "config.overrideSettings",
+			"type": "text",
+			"defaultValue": "60000",
+			"typeOptions": {
+				"validation": {
+					"function": "!config.readTimeout || utils.isPlaceholder(config.readTimeout) || utils.getInteger(config.readTimeout) >= 0",
+					"message": "The time must be a valid placeholder or a positive integer greater than or equal to 0. "
+				}
+			},
+			"options": {
+				"allowContextSelector": "false"
+			}
+		}
+	],
+	"outputs": [
+		{
+			"label": "Response",
+			"name": "response",
+			"type": "object",
+			"description": "The response to external URL"
+		}
+	]
+}
